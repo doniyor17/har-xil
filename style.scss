@@ -1,0 +1,12 @@
+body {
+  display: flex;
+  align-items: center;
+}
+@for $add from 1 through 10 {
+  div:nth-child(#{$add}) {
+    width: 150px;
+    height: 100px + $add * 50px;
+    background-color: rgba(0, 0, 100, 0.3) + $add * rgba(0, 0, 0, 0.1)
+    box-shadow: 0 0 10px + $add * 15px #000;
+  }
+}
