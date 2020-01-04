@@ -1,12 +1,127 @@
 body {
-  display: flex;
-  align-items: center;
+  perspective: 3500px;
 }
-@for $add from 1 through 10 {
-  div:nth-child(#{$add}) {
-    width: 150px;
-    height: 100px + $add * 50px;
-    background-color: rgba(0, 0, 100, 0.3) + $add * rgba(0, 0, 0, 0.1)
-    box-shadow: 0 0 10px + $add * 15px #000;
+.drop, .drop-child {
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+}
+.drop {
+  display: flex;
+  align-items: flex-start;
+}
+.drop > li {
+  margin-right: 10px;
+  padding: 15px 20px;
+  border: 1px solid transparent;
+  flex-grow: 1;
+  position: relative;
+  font-size: 40px;
+  background-color: #ccc;
+}
+.drop>li:hover .drop-child>li {
+  display: block;
+}
+.drop-child > li {
+  display: none;
+  font-size: 24px;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #000;
+  background-color: rgba( 0, 0, 50, 0.3);
+  transform-origin: center top;
+}
+@for $i from 1 through 10 {
+  .drop-child > li:nth-child(#{$i}) {
+    animation: slapper .1s*$i ease 1 forwards;
+    animation-delay: .08s*$i;
+    opacity: 0;
+  }
+}
+@keyframes slapper {
+  0% {
+    opacity: 0;
+    transform: rotateX(60deg);
+  }
+  80%{
+    opacity: 0.9;
+    transform: rotateX(-70deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0);
+  }
+}
+.drop-child-1 > li {
+  transform-origin: center center;
+}
+@for $i from 1 through 10 {
+  .drop-child-1 > li:nth-child(#{$i}) {
+    animation: go-around .1s*$i ease 1 forwards;
+    animation-delay: .08s*$i;
+    opacity: 0;
+  }
+}
+@keyframes go-around {
+  0%{
+    opacity: 0;
+    transform: rotateY(-80deg) translateY(30px);
+  }
+  80%{
+    opacity: 0.9;
+    transform: rotateY(10deg) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0) translateY(0);
+  }
+}
+
+.drop-child-2 > li {
+  transform-origin: center top;
+}
+@for $i from 1 through 10 {
+  .drop-child-2 > li:nth-child(#{$i}) {
+    animation: rotate-it .1s*$i ease 1 forwards;
+    animation-delay: .08s*$i;
+    opacity: 0;
+  }
+}
+@keyframes rotate-it {
+  0%{
+    opacity: 0;
+    transform: scale(0.3) translateY(-20px);
+  }
+  80%{
+    opacity: 0.9;
+    transform: scale(1.07) translateY(7px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+.drop-child-3 > li {
+  transform-origin: right top;
+}
+@for $i from 1 through 10 {
+  .drop-child-3 > li:nth-child(#{$i}) {
+    animation: go-first .1s*$i ease 1 forwards;
+    animation-delay: .08s*$i;
+    opacity: 0;
+  }
+}
+@keyframes go-first {
+  0%{
+    opacity: 0;
+    transform: rotateY(-80deg) translateX(60px);
+  }
+  80%{
+    opacity: 0.9;
+    transform: rotateY(10deg) translateX(0);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0) translateX(0);
   }
 }
